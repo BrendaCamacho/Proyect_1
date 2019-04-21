@@ -62,7 +62,7 @@ color:var(--amarillo);
 border: 1px solid var(--amarillo);
 height: 30px;
 line-height: 30px;
-padding:0 14px;
+padding:0 6px;
 text-transform: none;
 }
 
@@ -80,8 +80,6 @@ text-transform: none;
 }
 
 
-
-
 /*===== ROW 3 CHIPS ===== */
 
 .chipsRow{
@@ -96,7 +94,7 @@ text-transform: none;
     height: 25px;
     font-size: 12px;
     line-height: 25px;
-    border-radius: 10px;
+    border-radius: 6px;
 }
 
 .chip .close{
@@ -107,3 +105,49 @@ text-transform: none;
     color: var(--verde);
     opacity:0.8;
 }
+
+/* ===== CARDS RECIPES ===== */
+
+.card{
+    background-color:var(--verde);
+    padding:0!important;
+}
+
+
+.card .card-content{
+    padding:6px;
+
+}
+
+.card .card-content .card-title{
+    color: var(--amarillo);
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.card-content{
+    width:100%;
+    display:flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+
+}
+
+.cardTitle{
+    width:100%;
+    clear: both;
+    margin-bottom: 10px;
+}
+
+.card .card-content p{
+    text-align: left;
+    color:white;
+    font-weight: 200;
+}
+
+.card .card-content p i{
+    color:var(--claro);
+    margin-right: 3px;
+    font-weight: 200;
+}
+
