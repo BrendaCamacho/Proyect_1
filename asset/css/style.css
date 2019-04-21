@@ -1,0 +1,109 @@
+:root{
+    --claro:#1de9b6;
+    --verde: #00897b;
+    --amarillo: #fdd385;
+}
+
+body{
+    background-color: rgb(23, 44, 0);
+    font-family: 'Lato'!important, sans-serif!important
+    font-size: 20px;
+}
+.logo{
+    text-align: center;
+}
+
+#logo{
+    margin:0 auto;
+    width:20%;
+}
+
+/* ===== SEARCH BAR INGREDIENTES ===== */
+
+input{
+    color:white!important;
+    font-size: 16px;
+}
+
+.formContainer{
+    display:flex;
+    justify-content: center;
+} 
+
+button{
+    clear: both;
+}
+
+.input-field label{
+ color: var(--amarillo);
+}
+
+.input-field input[type=text]{
+    border-bottom: 1px solid var(--amarillo);
+}
+
+.input-field input[type=text]:focus {
+    border-bottom: 1px solid var(--claro)!important;
+}
+
+.input-field input[type=text]:focus + label {
+    color: var(--claro)!important;
+  }
+
+
+#search{
+    font-size: 10px;
+    padding:1px;
+}
+
+#addIngredients{
+background-color: transparent;
+color:var(--amarillo);
+border: 1px solid var(--amarillo);
+height: 30px;
+line-height: 30px;
+padding:0 14px;
+text-transform: none;
+}
+
+#addIngredients:hover{
+    color:var(--claro);
+    border: 1px solid var(--claro);
+    transition: ease-in-out 0.3s;
+}
+
+#addIngredients:active{
+    color:var(--verde);
+    background-color:var(--claro);
+    border: 1px solid white;
+    transition: ease-in-out 0.3s;
+}
+
+
+
+
+/*===== ROW 3 CHIPS ===== */
+
+.chipsRow{
+    display:flex;
+    justify-content: center;
+    font-weight: 400;
+}
+
+.chip{
+    background-color: var(--claro);
+    color:var(--verde);
+    height: 25px;
+    font-size: 12px;
+    line-height: 25px;
+    border-radius: 10px;
+}
+
+.chip .close{
+    line-height: 28px;
+    font-size: 14px;
+    padding-left: 10px;
+    text-shadow: none;
+    color: var(--verde);
+    opacity:0.8;
+}
