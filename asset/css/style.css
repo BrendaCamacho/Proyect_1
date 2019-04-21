@@ -151,3 +151,45 @@ text-transform: none;
     font-weight: 200;
 }
 
+.card .card-reveal{
+    padding:16px 12px;
+}
+
+.card-reveal .card-title{
+    color: var(--verde);
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.yields{
+    color:var(--verde);
+    margin-bottom: 20px;
+}
+
+.card-reveal .card-title i{
+    color:var(--amarillo);
+}
+
+.btn-small{
+    background-color:var(--amarillo);
+    opacity: 1;
+    color:white!important;
+    border-radius: 8px;
+}
+.btn-small:hover{
+    background-color: var(--claro);
+}
+
+
+ul{
+    list-style-type:disc!important;
+}
+
+ul li {
+    list-style-type: disc!important;
+}
+
+li{
+    list-style-type:disc!important;
+}
