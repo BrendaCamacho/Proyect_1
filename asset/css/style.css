@@ -1,7 +1,7 @@
 :root{
     --claro:#1de9b6;
     --verde: #00897b;
-    --amarillo: #ffc04b;
+    --amarillo: #ffde24;
 }
 
 body{
@@ -189,8 +189,7 @@ ul{
 
 ul li {
     list-style-type: disc!important;
+    margin-left:18px;
+    color: gray;
 }
 
-li{
-    list-style-type:disc!important;
-}
