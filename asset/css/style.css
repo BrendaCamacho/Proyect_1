@@ -1,7 +1,7 @@
 :root{
     --claro:#1de9b6;
     --verde: #00897b;
-    --amarillo: #fdd385;
+    --amarillo: #ffc04b;
 }
 
 body{
@@ -173,9 +173,10 @@ text-transform: none;
 
 .btn-small{
     background-color:var(--amarillo);
-    opacity: 1;
-    color:white!important;
+    opacity: 1!important;
+    color:var(--verde)!important;
     border-radius: 8px;
+    text-transform: none;
 }
 .btn-small:hover{
     background-color: var(--claro);
