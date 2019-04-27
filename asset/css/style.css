@@ -152,6 +152,11 @@ text-transform: none;
     margin-bottom: 10px;
 }
 
+.flexTitle {
+    width: 70%;
+    float: left;
+}
+
 .card .card-content p{
     text-align: left;
     color:white;
@@ -177,6 +182,9 @@ text-transform: none;
 }
 
 .yields{
+    text-align: left;
+    width: 100%;
+    float: left;
     color:var(--verde);
     margin-bottom: 20px;
     border-bottom: 1px solid var(--amarillo);

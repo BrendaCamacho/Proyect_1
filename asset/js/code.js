@@ -94,6 +94,8 @@ $("#addIngredients").on("click", function(event) {
           imageCard.attr("src", image);
           imageContainer.append(imageCard);
 
+// ===== CARD CONTENT =====
+
       var cardContent = $("<div>");
           cardContent.addClass("card-content");
           singleCard.append(cardContent);    
@@ -106,15 +108,19 @@ $("#addIngredients").on("click", function(event) {
           cardTitle.addClass("cardTitle");
           cardContent.append(cardTitle);
 
-      var nombre = $("<span>");
-          nombre.addClass("card-title activator truncate");
+      var nombre = $("<div>");
+          nombre.addClass("card-title activator truncate flexTitle");
           nombre.text(nameRecipe);    
           cardTitle.append(nombre);
+
+      var iconContainer = $("<div>");
+          iconContainer.addClass("card-title activator");
+          cardTitle.append(iconContainer);
           
       var iconoMas = $("<i>");
           iconoMas.addClass("material-icons small right");
           iconoMas.text("add_circle");
-          nombre.append(iconoMas); 
+          iconContainer.append(iconoMas); 
 
           var cookingTime = response.hits[i].recipe.totalTime;
           console.log(cookingTime);
@@ -133,15 +139,63 @@ $("#addIngredients").on("click", function(event) {
           time.append(iconoReloj);
 
 
-          
+
        var calories = response.hits[i].recipe.calories;
+       var parseCalories = parseInt(calories);
        console.log(calories);
+
+      var cardCalories = $("<div>");
+           cardCalories.addClass("cardText");
+           cardContent.append(cardCalories);
+
+      var calorias = $("<p>");
+          calorias.text(parseCalories + " cal");
+          cardCalories.append(calorias);
+          
+      var iconoFeliz = $("<i>");
+          iconoFeliz.addClass("material-icons left");
+          iconoFeliz.text("mood");
+          calorias.append(iconoFeliz);
        
-        var cardContent = $("<div>");
-      
+// =========== CARD REVEAL ============
 
        var servings = response.hits[i].recipe.yield;
        console.log(servings);
+       
+      var reveal = $("<div>");
+          reveal.addClass("card-reveal");
+          singleCard.append(reveal);
+
+
+      var titleReveal = $("<div>");
+          titleReveal.addClass("card-title flexTitle truncate");
+          titleReveal.text(nameRecipe);
+          reveal.append(titleReveal);
+
+      var iconoContenedor = $("<div>");
+          iconoContenedor.addClass("card-title");
+          reveal.append(iconoContenedor);
+
+       
+      var closeReveal = $("<i>");
+          closeReveal.addClass("material-icons small right");
+          closeReveal.text("close");
+          iconoContenedor.append(closeReveal); 
+
+      var yieldServings = $("<p>");
+          yieldServings.addClass("yields");
+          yieldServings.text("Yields: " + servings + " servings");
+          reveal.append(yieldServings);
+
+          
+
+
+
+
+
+
+
+       
 
 
        var ingredientsLines = response.hits[i].recipe.ingredientLines;
