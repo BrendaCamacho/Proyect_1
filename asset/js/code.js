@@ -69,22 +69,61 @@ $("#addIngredients").on("click", function(event) {
     
     .then(function(response) {
 
-      console.log(response);
-      var image = response.hits[0].recipe.image;
-      console.log(image);
-      var nameRecipe = response.hits[0].recipe.label;
-      console.log(nameRecipe);           
-      var cookingTime = response.hits[0].recipe.totalTime;
-      console.log(cookingTime);
-      var calories = response.hits[0].recipe.calories;
-      console.log(calories);
-      var servings = response.hits[0].recipe.yield;
-      console.log(servings);
-      var ingredientsLines = response.hits[0].recipe.ingredientLines;
-      console.log(ingredientsLines)
-      var source = response.hits[0].recipe.url
-      console.log(source);
-       });
+    var results = response.hits;
+    console.log("Results", results);
+
+     for (var i = 0; i < results.length; i++) {
+
+      var cardContainer = $("<div>");
+          cardContainer.addClass("cardContainer col s12 m6 l4 xl3");
+          $(".recipesContainer").append(cardContainer);
+
+      var singleCard = $("<div>");
+          singleCard.addClass("card sticky-action col s12");
+          cardContainer.append(singleCard);
+          
+      var imageContainer = $("<div>");
+          imageContainer.addClass("card-image waves-effect waves-block waves-light"); 
+          singleCard.append(imageContainer);
+      
+      
+      var imageCard = $("<img>");
+          imageCard.addClass("activator");
+          imageCard.attr("src", image);
+          imageContainer.append(imageCard);
+
+
+       
+       var image = response.hits[i].recipe.image;
+       console.log(image);
+
+
+       var nameRecipe = response.hits[i].recipe.label;
+       console.log(nameRecipe);    
+       
+       
+       var cookingTime = response.hits[i].recipe.totalTime;
+       console.log(cookingTime);
+
+
+       var calories = response.hits[i].recipe.calories;
+       console.log(calories);
+
+
+       var servings = response.hits[i].recipe.yield;
+       console.log(servings);
+
+
+       var ingredientsLines = response.hits[i].recipe.ingredientLines;
+       console.log(ingredientsLines)
+
+
+       var source = response.hits[i].recipe.url
+       console.log(source);
+      
+        };
+     });
+
 
   }
       
