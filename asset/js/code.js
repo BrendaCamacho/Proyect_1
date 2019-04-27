@@ -86,29 +86,59 @@ $("#addIngredients").on("click", function(event) {
           imageContainer.addClass("card-image waves-effect waves-block waves-light"); 
           singleCard.append(imageContainer);
       
+          var image = response.hits[i].recipe.image;
+          console.log(image);
       
       var imageCard = $("<img>");
           imageCard.addClass("activator");
           imageCard.attr("src", image);
           imageContainer.append(imageCard);
 
+      var cardContent = $("<div>");
+          cardContent.addClass("card-content");
+          singleCard.append(cardContent);    
 
+
+          var nameRecipe = response.hits[i].recipe.label;
+          console.log(nameRecipe);
        
-       var image = response.hits[i].recipe.image;
-       console.log(image);
+      var cardTitle = $("<div>");
+          cardTitle.addClass("cardTitle");
+          cardContent.append(cardTitle);
+
+      var nombre = $("<span>");
+          nombre.addClass("card-title activator truncate");
+          nombre.text(nameRecipe);    
+          cardTitle.append(nombre);
+          
+      var iconoMas = $("<i>");
+          iconoMas.addClass("material-icons small right");
+          iconoMas.text("add_circle");
+          nombre.append(iconoMas); 
+
+          var cookingTime = response.hits[i].recipe.totalTime;
+          console.log(cookingTime);
+
+      var cardTime = $("<div>");
+          cardTime.addClass("cardText");
+          cardContent.append(cardTime);
+          
+      var time = $("<p>")
+          time.text(cookingTime + " min");
+          cardTime.append(time);
+      
+      var iconoReloj = $("<i>");
+          iconoReloj.addClass("material-icons left");
+          iconoReloj.text("timer");
+          time.append(iconoReloj);
 
 
-       var nameRecipe = response.hits[i].recipe.label;
-       console.log(nameRecipe);    
-       
-       
-       var cookingTime = response.hits[i].recipe.totalTime;
-       console.log(cookingTime);
-
-
+          
        var calories = response.hits[i].recipe.calories;
        console.log(calories);
-
+       
+        var cardContent = $("<div>");
+      
 
        var servings = response.hits[i].recipe.yield;
        console.log(servings);
