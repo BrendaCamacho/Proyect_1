@@ -187,8 +187,24 @@ $("#addIngredients").on("click", function(event) {
           yieldServings.text("Yields: " + servings + " servings");
           reveal.append(yieldServings);
 
-          
 
+      var list = $("<ul>");
+          reveal.append(list);
+
+      var itemIngredient="";
+      var itemList="";
+
+  for (var e = 0; e < ingredientsLines.length; e++) {
+
+          var itemIngredient = ingredientsLines[e];
+          var itemList = $("<li>");
+              itemList.text(itemIngredient);
+              list.append(itemList);
+  
+      }
+
+          
+      console.log("ingredientesLines", ingredientsLines);
 
 
 
