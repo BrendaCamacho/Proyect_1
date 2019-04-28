@@ -1,3 +1,43 @@
+var ingredientsArray = [];
+var addedIngredient = "";
+
+
+
+  $("#addIngredients").on("click",function(){
+  event.preventDefault();
+  addedIngredient = $("#ingredients").val().trim()
+  ingredientsArray.push(addedIngredient);
+  $("#ingredients").val("");
+  console.log(ingredientsArray);
+  console.log(addedIngredient);
+  displayChip();
+  
+  });
+
+  function displayChip(){
+    $(".chipsRow").empty();
+
+    for (var i = 0; i < ingredientsArray.length; i++) {
+
+        var chipX = $("<div>");
+        chipX.addClass("chip");
+        chipX.text(ingredientsArray[i]);
+
+        var closeX = $("<i>");
+        closeX.text("close")
+        closeX.addClass("close material-icons");
+      
+    }
+
+  };
+
+
+
+
+
+
+
+
 var ingredient="tomato";
 var key= "d700cd0ee0b7bf70739c9bd846d3080d"	;	
         var queryURL = "https://api.edamam.com/search?q=" +
