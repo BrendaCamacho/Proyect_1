@@ -1,43 +1,3 @@
-<<<<<<< HEAD
-var ingredientsArray = [];
-var addedIngredient = "";
-
-
-
-  $("#addIngredients").on("click",function(){
-  event.preventDefault();
-  addedIngredient = $("#ingredients").val().trim()
-  ingredientsArray.push(addedIngredient);
-  $("#ingredients").val("");
-  console.log(ingredientsArray);
-  console.log(addedIngredient);
-  displayChip();
-  
-  });
-
-  function displayChip(){
-    $(".chipsRow").empty();
-
-    for (var i = 0; i < ingredientsArray.length; i++) {
-
-        var chipX = $("<div>");
-        chipX.addClass("chip");
-        chipX.text(ingredientsArray[i]);
-
-        var closeX = $("<i>");
-        closeX.text("close")
-        closeX.addClass("close material-icons");
-      
-    }
-
-  };
-
-
-var ingredient="tomato";
-var key= "d700cd0ee0b7bf70739c9bd846d3080d"	;	
-        var queryURL = "https://api.edamam.com/search?q=" +
-        ingredient + "&app_id=" +  "f1e5b0de" + "&app_key=" + key;
-=======
 $(document).ready(function(){
 
 var config = {
@@ -113,6 +73,7 @@ $("#addIngredients").on("click", function(event) {
     console.log("Results", results);
 
      for (var i = 0; i < results.length; i++) {
+        // $(".recipesContainer").empty();
 
       var cardContainer = $("<div>");
           cardContainer.addClass("cardContainer col s12 m6 l4 xl3");
@@ -228,67 +189,47 @@ $("#addIngredients").on("click", function(event) {
           reveal.append(yieldServings);
 
 
+      var ingredientsLines = response.hits[i].recipe.ingredientLines;
+          console.log(ingredientsLines)
+   
+      var createlist= function() {
       var list = $("<ul>");
           reveal.append(list);
+          for (var e = 0; e < ingredientsLines.length; e++) {
+      var itemIngredient = ingredientsLines[e];
+      var itemList = $("<li>");
+          itemList.text(itemIngredient);
+          list.append(itemList);
+    };
+    yieldServings.append(list)
+    console.log("para ver si se ve")
+}
+    createlist()
 
-      var itemIngredient="";
-      var itemList="";
+    console.log("para ver si se ve 1")
+    var source = response.hits[i].recipe.url
+    console.log(source);
+    console.log("para ver si se ve 2")
 
-  for (var e = 0; e < ingredientsLines.length; e++) {
-
-          var itemIngredient = ingredientsLines[e];
-          var itemList = $("<li>");
-              itemList.text(itemIngredient);
-              list.append(itemList);
-  
-      }
-
-          
-      console.log("ingredientesLines", ingredientsLines);
-
-
-
-
-
-
-       
-
-
-       var ingredientsLines = response.hits[i].recipe.ingredientLines;
-       console.log(ingredientsLines)
+    var link= $("<a>");
+    link.addClass("waves-effect waves-light btn-small");
+    link.text("Full Recipe");
+    link.attr("href", source)
+    yieldServings.append(link);
+    console.log("para ver si se ve 3")
 
 
-       var source = response.hits[i].recipe.url
-       console.log(source);
-      
+    var plusIcon = $("<i>");
+    plusIcon.addClass("material-icons right");
+    plusIcon.text("add");
+    link.append(plusIcon);
+
+
+            console.log("para ver si se ve 10000")
+
         };
-     });
-
-
-  }
       
-
-
-
-  
-
-});
-
-
-
->>>>>>> e972c485b5c0f5b2a4632e5204a94b041b1eefea
-
-
-
-
-<<<<<<< HEAD
-        .then(function(response) {
-// variable que reciba el input para que sea parte de query URL
-//Al dar click se tiene que agregar el ingrediente (tomar en cuenta prevenDefaul)
-
-// funcion para crear las palabras y funcion para ver como meter las palabras al query
-
         });
-=======
-
->>>>>>> e972c485b5c0f5b2a4632e5204a94b041b1eefea
+    
+    }});
+  
