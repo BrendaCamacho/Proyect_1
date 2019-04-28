@@ -201,9 +201,9 @@ $("#addIngredients").on("click", function(event) {
           itemList.text(itemIngredient);
           list.append(itemList);
     };
-    yieldServings.append(list)
-    console.log("para ver si se ve")
-}
+     yieldServings.append(list)
+     console.log("para ver si se ve")
+    }
     createlist()
 
     console.log("para ver si se ve 1")
@@ -225,7 +225,7 @@ $("#addIngredients").on("click", function(event) {
     link.append(plusIcon);
 
 
-            console.log("para ver si se ve 10000")
+    console.log("para ver si se ve 10000")
 
         };
       
