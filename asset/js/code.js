@@ -32,12 +32,6 @@ var addedIngredient = "";
   };
 
 
-
-
-
-
-
-
 var ingredient="tomato";
 var key= "d700cd0ee0b7bf70739c9bd846d3080d"	;	
         var queryURL = "https://api.edamam.com/search?q=" +
