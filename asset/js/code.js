@@ -50,6 +50,10 @@ connectionsRef.on("value", function(snapshot) {
 
 
     });
+    // var ref = firebase.database().ref(searchTerm);
+    // ref.orderByChild(searchTerm).limitToLast(5).on("child_added", function(snapshot) {
+    //     console.log(snapshot.searchTerm);
+    // });
 
 
 var ingredientsArray = [];
