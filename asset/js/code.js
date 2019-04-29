@@ -73,6 +73,7 @@ $("#addIngredients").on("click", function(event) {
     console.log("Results", results);
 
      for (var i = 0; i < results.length; i++) {
+        // $(".recipesContainer").empty();
 
       var cardContainer = $("<div>");
           cardContainer.addClass("cardContainer col s12 m6 l4 xl3");
@@ -188,56 +189,47 @@ $("#addIngredients").on("click", function(event) {
           reveal.append(yieldServings);
 
 
+      var ingredientsLines = response.hits[i].recipe.ingredientLines;
+          console.log(ingredientsLines)
+   
+      var createlist= function() {
       var list = $("<ul>");
           reveal.append(list);
+          for (var e = 0; e < ingredientsLines.length; e++) {
+      var itemIngredient = ingredientsLines[e];
+      var itemList = $("<li>");
+          itemList.text(itemIngredient);
+          list.append(itemList);
+    };
+     yieldServings.append(list)
+     console.log("para ver si se ve")
+    }
+    createlist()
 
-      var itemIngredient="";
-      var itemList="";
+    console.log("para ver si se ve 1")
+    var source = response.hits[i].recipe.url
+    console.log(source);
+    console.log("para ver si se ve 2")
 
-  for (var e = 0; e < ingredientsLines.length; e++) {
-
-          var itemIngredient = ingredientsLines[e];
-          var itemList = $("<li>");
-              itemList.text(itemIngredient);
-              list.append(itemList);
-  
-      }
-
-          
-      console.log("ingredientesLines", ingredientsLines);
-
-
-
-
-
-
-       
-
-
-       var ingredientsLines = response.hits[i].recipe.ingredientLines;
-       console.log(ingredientsLines)
+    var link= $("<a>");
+    link.addClass("waves-effect waves-light btn-small");
+    link.text("Full Recipe");
+    link.attr("href", source)
+    yieldServings.append(link);
+    console.log("para ver si se ve 3")
 
 
-       var source = response.hits[i].recipe.url
-       console.log(source);
-      
+    var plusIcon = $("<i>");
+    plusIcon.addClass("material-icons right");
+    plusIcon.text("add");
+    link.append(plusIcon);
+
+
+    console.log("para ver si se ve 10000")
+
         };
-     });
-
-
-  }
       
-
-
-
+        });
+    
+    }});
   
-
-});
-
-
-
-
-
-
-
-
