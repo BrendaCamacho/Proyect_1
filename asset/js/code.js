@@ -1,4 +1,5 @@
 $(document).ready(function(){
+    // ===firebase===
 
 var config = {
   apiKey: "AIzaSyCpq0tQ_Vkd6lMOA4s7dWmoTn45cTzIwvc",
@@ -9,6 +10,51 @@ var config = {
   messagingSenderId: "998295644330"
 };
 firebase.initializeApp(config);
+
+
+var database =firebase.database();
+var searchTerm ="";
+// visitors=0;
+var connectionsRef = database.ref("/connections");
+var connectedRef = database.ref(".info/connected");
+
+$("#addIngredients").on("click", function(capturarValor) {
+    capturarValor.preventDefault();
+    console.log("test")
+    searchTerm = $("#ingredients").val().trim(); 
+    // visitors =$("#watchers").val().trim();
+
+    database.ref().push({
+        searchTerm:searchTerm,
+        // visitors:visitors
+    });
+
+    database.ref().on("child_added", function(childSnapshot){
+    console.log(childSnapshot.val().searchTerm);
+    // console.log(childSnapshot.val().visitors);
+
+    },
+
+connectedRef.on("value", function(snap) {
+    if (snap.val()) {
+        var con = connectionsRef.push(true);
+        console.log(con)
+
+    }
+
+connectionsRef.on("value", function(snapshot) {
+
+    var visitas = $("#watchers").text(snapshot.numChildren());
+    console.log("esta consola" + visitas);
+
+
+
+    });
+    // var ref = firebase.database().ref(searchTerm);
+    // ref.orderByChild(searchTerm).limitToLast(5).on("child_added", function(snapshot) {
+    //     console.log(snapshot.searchTerm);
+    // });
+
 
 var ingredientsArray = [];
 var addedIngredient = "";
@@ -212,22 +258,17 @@ $("#addIngredients").on("click", function(event) {
           list.append(itemList);
     };
      reveal.append(list)
-     console.log("para ver si se ve")
     }
     createlist()
 
-    console.log("para ver si se ve 1")
     var source = response.hits[i].recipe.url
     console.log(source);
-    console.log("para ver si se ve 2")
 
     var link= $("<a>");
     link.addClass("waves-effect waves-light btn-small");
     link.text("Full Recipe");
     link.attr("href", source)
-    link.attr("target","_blank")
     reveal.append(link);
-    console.log("para ver si se ve 3")
 
 
     var plusIcon = $("<i>");
@@ -236,11 +277,13 @@ $("#addIngredients").on("click", function(event) {
     link.append(plusIcon);
 
 
-    console.log("para ver si se ve 10000")
 
         };
       
         });
     
-    }});
+    }}));
+});
   
+
+});

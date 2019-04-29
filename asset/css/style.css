@@ -39,7 +39,11 @@ input{
 } 
 
 
+#watchers{
+    color:white;
+    font-size: 1em;
 
+}
 .input-field label{
  color: var(--amarillo);
 }
