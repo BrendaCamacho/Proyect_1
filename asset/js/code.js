@@ -201,7 +201,7 @@ $("#addIngredients").on("click", function(event) {
           itemList.text(itemIngredient);
           list.append(itemList);
     };
-     yieldServings.append(list)
+     reveal.append(list)
      console.log("para ver si se ve")
     }
     createlist()
@@ -215,7 +215,7 @@ $("#addIngredients").on("click", function(event) {
     link.addClass("waves-effect waves-light btn-small");
     link.text("Full Recipe");
     link.attr("href", source)
-    yieldServings.append(link);
+    reveal.append(link);
     console.log("para ver si se ve 3")
 
 
