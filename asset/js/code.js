@@ -215,6 +215,7 @@ $("#addIngredients").on("click", function(event) {
     link.addClass("waves-effect waves-light btn-small");
     link.text("Full Recipe");
     link.attr("href", source)
+    link.attr("target","_blank")
     reveal.append(link);
     console.log("para ver si se ve 3")
 
