@@ -209,6 +209,7 @@ text-transform: none;
 
 ul{
     list-style-type:disc!important;
+    clear: both;
 }
 
 ul li {
@@ -216,6 +217,10 @@ ul li {
     margin-left:18px;
     color: gray;
     font-size: 16px;
+}
+
+a:link{
+    text-decoration: none;
 }
 
 
@@ -233,5 +238,12 @@ ul li {
         width:100%;
         padding-right: 10px;
         padding-left: 10px;
+    }
+}
+
+@media only screen and (min-width: 993px){
+
+    .container {
+        width: 80%;
     }
 }

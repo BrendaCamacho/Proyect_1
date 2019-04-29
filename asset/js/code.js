@@ -129,10 +129,20 @@ $("#addIngredients").on("click", function(event) {
       var cardTime = $("<div>");
           cardTime.addClass("cardText");
           cardContent.append(cardTime);
+
+         if (cookingTime === 0){
+            cookingTime = "N/A";
+            var time = $("<p>")
+            time.text(cookingTime);
+            cardTime.append(time);
+
+        }else{
+            var time = $("<p>")
+            time.text(cookingTime + " min");
+            cardTime.append(time);
+        };
           
-      var time = $("<p>")
-          time.text(cookingTime + " min");
-          cardTime.append(time);
+
       
       var iconoReloj = $("<i>");
           iconoReloj.addClass("material-icons left");
