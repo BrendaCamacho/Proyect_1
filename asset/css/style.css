@@ -127,19 +127,21 @@ text-transform: none;
 
 .card{
     background-color:var(--verde);
-    padding:0!important;
+    padding:1px!important;
+    margin:1em;
 }
 
 
 .card .card-content{
-    padding:6px;
+    padding:10px;
 
 }
 
 .card .card-content .card-title{
     color: var(--amarillo);
-    font-size: 14px;
-    font-weight: bold;
+    font-size: 1em;
+    font-weight: 700;
+    letter-spacing: 1px;
 }
 
 .card-content{
@@ -153,7 +155,7 @@ text-transform: none;
 .cardTitle{
     width:100%;
     clear: both;
-    margin-bottom: 10px;
+    margin-bottom: 6px;
 }
 
 .flexTitle {
@@ -165,6 +167,7 @@ text-transform: none;
     text-align: left;
     color:white;
     font-weight: 200;
+    font-size: 0.9em;
 }
 
 .card .card-content p i{
@@ -186,10 +189,13 @@ text-transform: none;
 }
 
 .yields{
+    font-size: 0.9em;
+    padding-bottom: 0.5em;
     text-align: left;
     width: 100%;
     float: left;
     color:var(--verde);
+    opacity: 0.7;
     margin-bottom: 20px;
     border-bottom: 1px solid var(--amarillo);
 }
@@ -200,6 +206,7 @@ text-transform: none;
 
 .btn-small{
     background-color:var(--amarillo);
+    margin-top: 1em;
     opacity: 1!important;
     color:var(--verde)!important;
     border-radius: 8px;
@@ -226,6 +233,21 @@ ul li {
 a:link{
     text-decoration: none;
 }
+
+/* ===== VISITAS ======*/
+
+.visitas{
+    text-align: center;
+    width:100%;
+    color:var(--claro);
+    margin: 0 auto;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font: 300;
+    bottom: 0;
+}
+
+
 
 
 /* ===== MEDIA QUERIES ===== */
