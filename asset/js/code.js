@@ -1,59 +1,57 @@
 $(document).ready(function(){
     // ===firebase===
 
-var config = {
-  apiKey: "AIzaSyCpq0tQ_Vkd6lMOA4s7dWmoTn45cTzIwvc",
-  authDomain: "proyect1-27081.firebaseapp.com",
-  databaseURL: "https://proyect1-27081.firebaseio.com",
-  projectId: "proyect1-27081",
-  storageBucket: "proyect1-27081.appspot.com",
-  messagingSenderId: "998295644330"
-};
-firebase.initializeApp(config);
+    var config = {
+        apiKey: "AIzaSyCpq0tQ_Vkd6lMOA4s7dWmoTn45cTzIwvc",
+        authDomain: "proyect1-27081.firebaseapp.com",
+        databaseURL: "https://proyect1-27081.firebaseio.com",
+        projectId: "proyect1-27081",
+        storageBucket: "proyect1-27081.appspot.com",
+        messagingSenderId: "998295644330"
+      };
+      
+      firebase.initializeApp(config);
+ 
 
+    function visitLastIngr() {
+    
 
-var database =firebase.database();
-var searchTerm ="";
-// visitors=0;
-var connectionsRef = database.ref("/connections");
-var connectedRef = database.ref(".info/connected");
+          
+           
+          var database = firebase.database();
+          var searchTerm = " ";
+          var connectionsRef = database.ref("/connections");
+          var connectedRef = database.ref(".info/connected");
+              searchTerm = $("#ingredients").val().trim(); 
 
-$("#addIngredients").on("click", function(capturarValor) {
-    capturarValor.preventDefault();
-    console.log("test")
-    searchTerm = $("#ingredients").val().trim(); 
-    // visitors =$("#watchers").val().trim();
+            database.ref().push({
+            searchTerm:searchTerm,
+            });  
 
-    database.ref().push({
-        searchTerm:searchTerm,
-        // visitors:visitors
-    });
+            database.ref().on("child_added", function(childSnapshot){
+            console.log(childSnapshot.val().searchTerm);
 
-    database.ref().on("child_added", function(childSnapshot){
-    console.log(childSnapshot.val().searchTerm);
-    // console.log(childSnapshot.val().visitors);
+            },
 
-    },
+        connectedRef.on("value", function(snap) {
+            if (snap.val()) {
+            var con = connectionsRef.push(true);
+            console.log(con)
+            } //Cierra If
 
-connectedRef.on("value", function(snap) {
-    if (snap.val()) {
-        var con = connectionsRef.push(true);
-        console.log(con)
+        connectionsRef.on("value", function(snapshot) {
+            var visitas = $("#watchers").text(snapshot.numChildren());
+            console.log("esta consola" + visitas);
+            });
 
-    }
+        // var ref = firebase.database().ref(searchTerm);
+        // ref.orderByChild(searchTerm).limitToLast(5).on("child_added", function(snapshot) {
+        // console.log(snapshot.searchTerm);
+        // // });
 
-connectionsRef.on("value", function(snapshot) {
+        })); 
+    };
 
-    var visitas = $("#watchers").text(snapshot.numChildren());
-    console.log("esta consola" + visitas);
-
-
-
-    });
-    // var ref = firebase.database().ref(searchTerm);
-    // ref.orderByChild(searchTerm).limitToLast(5).on("child_added", function(snapshot) {
-    //     console.log(snapshot.searchTerm);
-    // });
 
 
 var ingredientsArray = [];
@@ -62,6 +60,7 @@ var ingredientsString="";
 
 
 // === Render buttons ===
+
 function renderButtons(){
 
   $(".chipsRow").empty();
@@ -72,30 +71,40 @@ function renderButtons(){
     chipX.attr("data-name", ingredientsArray[i]);
     chipX.text(ingredientsArray[i]);
     $(".chipsRow").append(chipX);
-
   };
+
   var closeX = $("<i>");
   closeX.text("close")
   closeX.addClass("close material-icons");
   $(".chip").append(closeX);
+
 };
 
-// === Add On click === 
+// ===== End Render Buttons =====
+
+
+// ===== Add On click  ===== 
 $("#addIngredients").on("click", function(event) {
   event.preventDefault();
   addedIngredient = $("#ingredients").val().trim();
+  visitLastIngr();
   ingredientsArray.push(addedIngredient);
   $("#ingredients").val("");
   renderButtons();
   console.log(ingredientsArray);
   ingredientsString = ingredientsArray.join("-");
   console.log(ingredientsString);
+  $(".recipesContainer").empty();
 
   ajaxCall();
 
       });
+// ===== Ends Add on click =====
 
 
+
+
+// ====================== AJAX CALLS ===============================
 
   function ajaxCall(){
     var key= "d700cd0ee0b7bf70739c9bd846d3080d"	;	
@@ -141,7 +150,7 @@ $("#addIngredients").on("click", function(event) {
           imageCard.attr("src", image);
           imageContainer.append(imageCard);
 
-// ===== CARD CONTENT =====
+    // ===== CARD CONTENT =====
 
       var cardContent = $("<div>");
           cardContent.addClass("card-content");
@@ -214,9 +223,9 @@ $("#addIngredients").on("click", function(event) {
           iconoFeliz.text("mood");
           calorias.append(iconoFeliz);
        
-// =========== CARD REVEAL ============
+    // =========== CARD REVEAL ============
 
-       var servings = response.hits[i].recipe.yield;
+      var servings = response.hits[i].recipe.yield;
        console.log(servings);
        
       var reveal = $("<div>");
@@ -248,42 +257,39 @@ $("#addIngredients").on("click", function(event) {
       var ingredientsLines = response.hits[i].recipe.ingredientLines;
           console.log(ingredientsLines)
    
-      var createlist= function() {
-      var list = $("<ul>");
-          reveal.append(list);
-          for (var e = 0; e < ingredientsLines.length; e++) {
-      var itemIngredient = ingredientsLines[e];
-      var itemList = $("<li>");
-          itemList.text(itemIngredient);
-          list.append(itemList);
-    };
-     reveal.append(list)
-    }
+            var createlist= function() {
+            var list = $("<ul>");
+                reveal.append(list);
+                for (var e = 0; e < ingredientsLines.length; e++) {
+                    var itemIngredient = ingredientsLines[e];
+                    var itemList = $("<li>");
+                        itemList.text(itemIngredient);
+                        list.append(itemList);
+                    }; // Cierra for loop
+            reveal.append(list)
+             } // Cierra createList function
+
     createlist()
 
     var source = response.hits[i].recipe.url
-    console.log(source);
+        console.log(source);
 
     var link= $("<a>");
-    link.addClass("waves-effect waves-light btn-small");
-    link.text("Full Recipe");
-    link.attr("href", source)
-    reveal.append(link);
+        link.addClass("waves-effect waves-light btn-small");
+        link.text("Full Recipe");
+        link.attr("href", source)
+        reveal.append(link);
 
 
     var plusIcon = $("<i>");
-    plusIcon.addClass("material-icons right");
-    plusIcon.text("add");
-    link.append(plusIcon);
+        plusIcon.addClass("material-icons right");
+        plusIcon.text("add");
+        link.append(plusIcon);
 
-
-
-        };
+        }; // cierra loop results.length display de los resultados
       
-        });
+        });  // cierra Response 
     
-    }}));
-});
+}; // Cierra Ajax Call
+}); // La segunda cierra on document ready
   
-
-});
