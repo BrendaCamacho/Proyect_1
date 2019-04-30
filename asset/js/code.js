@@ -11,15 +11,12 @@ $(document).ready(function(){
       };
       
       firebase.initializeApp(config);
- 
-
-    function visitLastIngr() {
-    
+      var contadorjs = 0;
 
           
            
           var database = firebase.database();
-          var searchTerm = " ";
+          var searchTerm = "";
           var connectionsRef = database.ref("/connections");
           var connectedRef = database.ref(".info/connected");
               searchTerm = $("#ingredients").val().trim(); 
@@ -28,29 +25,40 @@ $(document).ready(function(){
             searchTerm:searchTerm,
             });  
 
-            database.ref().on("child_added", function(childSnapshot){
-            console.log(childSnapshot.val().searchTerm);
 
-            },
+          
 
         connectedRef.on("value", function(snap) {
+            console.log("Leyendo esto contd")
             if (snap.val()) {
             var con = connectionsRef.push(true);
             console.log(con)
-            } //Cierra If
+            console.log("guardar contador", contadorjs)
+        
+            }//Cierra If
+        }) ; 
+
+
+        database.ref("contador").on("value", function(snap){
+            console.log("actualizar contador")
+            console.log(snap.val().contador)
+            contadorjs = snap.val().contador
+
+        });
+
 
         connectionsRef.on("value", function(snapshot) {
-            var visitas = $("#watchers").text(snapshot.numChildren());
-            console.log("esta consola" + visitas);
+            contadorjs ++ ;
+            database.ref("contador").set({
+            contador: contadorjs
+            })
             });
 
+ 
         // var ref = firebase.database().ref(searchTerm);
         // ref.orderByChild(searchTerm).limitToLast(5).on("child_added", function(snapshot) {
         // console.log(snapshot.searchTerm);
         // // });
-
-        })); 
-    };
 
 
 
@@ -87,13 +95,12 @@ function renderButtons(){
 $("#addIngredients").on("click", function(event) {
   event.preventDefault();
   addedIngredient = $("#ingredients").val().trim();
-  visitLastIngr();
   ingredientsArray.push(addedIngredient);
   $("#ingredients").val("");
   renderButtons();
-  console.log(ingredientsArray);
+
   ingredientsString = ingredientsArray.join("-");
-  console.log(ingredientsString);
+
   $(".recipesContainer").empty();
 
   ajaxCall();
@@ -125,7 +132,7 @@ $("#addIngredients").on("click", function(event) {
     .then(function(response) {
 
     var results = response.hits;
-    console.log("Results", results);
+    //console.log("Results", results);
 
      for (var i = 0; i < results.length; i++) {
         // $(".recipesContainer").empty();
@@ -143,7 +150,7 @@ $("#addIngredients").on("click", function(event) {
           singleCard.append(imageContainer);
       
           var image = response.hits[i].recipe.image;
-          console.log(image);
+          //console.log(image);
       
       var imageCard = $("<img>");
           imageCard.addClass("activator");
@@ -158,7 +165,7 @@ $("#addIngredients").on("click", function(event) {
 
 
           var nameRecipe = response.hits[i].recipe.label;
-          console.log(nameRecipe);
+          //console.log(nameRecipe);
        
       var cardTitle = $("<div>");
           cardTitle.addClass("cardTitle");
@@ -179,7 +186,7 @@ $("#addIngredients").on("click", function(event) {
           iconContainer.append(iconoMas); 
 
           var cookingTime = response.hits[i].recipe.totalTime;
-          console.log(cookingTime);
+          //console.log(cookingTime);
 
       var cardTime = $("<div>");
           cardTime.addClass("cardText");
@@ -208,7 +215,7 @@ $("#addIngredients").on("click", function(event) {
 
        var calories = response.hits[i].recipe.calories;
        var parseCalories = parseInt(calories);
-       console.log(calories);
+       //console.log(calories);
 
       var cardCalories = $("<div>");
            cardCalories.addClass("cardText");
@@ -226,11 +233,12 @@ $("#addIngredients").on("click", function(event) {
     // =========== CARD REVEAL ============
 
       var servings = response.hits[i].recipe.yield;
-       console.log(servings);
+       //console.log(servings);
        
       var reveal = $("<div>");
           reveal.addClass("card-reveal");
           singleCard.append(reveal);
+
 
 
       var titleReveal = $("<div>");
@@ -250,12 +258,12 @@ $("#addIngredients").on("click", function(event) {
 
       var yieldServings = $("<p>");
           yieldServings.addClass("yields");
-          yieldServings.text("Yields: " + servings + " servings");
+          yieldServings.text(servings + " servings");
           reveal.append(yieldServings);
 
 
       var ingredientsLines = response.hits[i].recipe.ingredientLines;
-          console.log(ingredientsLines)
+          ////console.log(ingredientsLines)
    
             var createlist= function() {
             var list = $("<ul>");
@@ -272,7 +280,7 @@ $("#addIngredients").on("click", function(event) {
     createlist()
 
     var source = response.hits[i].recipe.url
-        console.log(source);
+        //console.log(source);
 
     var link= $("<a>");
         link.addClass("waves-effect waves-light btn-small");
