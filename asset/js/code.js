@@ -119,8 +119,8 @@ $(document).on("click", ".close", function(){
     var adios = ingredientsArray.splice(ingredientsArray.indexOf(name), 1);
     console.log("adios", adios)    
     console.log("despues de borrar", ingredientsArray)
-    ingredientsString = ingredientsArray.join("-");
     console.log("ingredients strings", ingredientsString);
+    $(".recipesContainer").empty();
     ajaxCall();
 });
     
@@ -130,6 +130,7 @@ $(document).on("click", ".close", function(){
 // ====================== AJAX CALLS ===============================
 
   function ajaxCall(){
+    ingredientsString = ingredientsArray.join("-");
     var key= "d700cd0ee0b7bf70739c9bd846d3080d"	;	
     var queryURL = "https://api.edamam.com/search?q=" +
     ingredientsString + "&app_id=" +  "f1e5b0de" + "&app_key=" + key;
