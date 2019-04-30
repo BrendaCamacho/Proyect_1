@@ -82,8 +82,9 @@ function renderButtons(){
   };
 
   var closeX = $("<i>");
-  closeX.text("close")
+  closeX.text("close");
   closeX.addClass("close material-icons");
+  closeX.attr("data-name", ingredientsArray[i]);
   $(".chip").append(closeX);
 
 };
@@ -98,16 +99,31 @@ $("#addIngredients").on("click", function(event) {
   ingredientsArray.push(addedIngredient);
   $("#ingredients").val("");
   renderButtons();
+  console.log("ingredientes sin borrar", ingredientsArray);
 
   ingredientsString = ingredientsArray.join("-");
 
   $(".recipesContainer").empty();
-
+    
   ajaxCall();
 
       });
 // ===== Ends Add on click =====
 
+// ===== CLOSE CHIPS ===== 
+$(document).on("click", ".close", function(){
+
+    var parent = $(this).parent();
+    var name = parent.data("name");
+    console.log("CLick close");
+    var adios = ingredientsArray.splice(ingredientsArray.indexOf(name), 1);
+    console.log("adios", adios)    
+    console.log("despues de borrar", ingredientsArray)
+    ingredientsString = ingredientsArray.join("-");
+    console.log("ingredients strings", ingredientsString);
+    ajaxCall();
+});
+    
 
 
 
