@@ -111,7 +111,7 @@ text-transform: none;
 .phrase{
     width:100%;
     justify-content: center;
-    margin-bottom:2em;
+    margin-bottom:1em;
 }
 
 .textPhrase{
@@ -122,6 +122,7 @@ text-transform: none;
     opacity: 0.9;
     letter-spacing: 1px;
     font-size: .85em;
+    text-shadow: 1px 1px 1px black ;
 
 }
 
@@ -157,7 +158,7 @@ text-transform: none;
     display:flex;
     justify-content: center;
     font-weight: 400;
-    margin-bottom: 3em;
+    margin-bottom: 2.5em;
 }
 
 .chip{
@@ -310,6 +311,28 @@ a:link{
     margin:4em 0 0 0;
 }
 
+.no-results{
+    margin:-2em auto;
+    width:90%;
+    text-align: center;
+    padding:0 0.5em;
+    font-weight: 400;
+    color:rgba(201, 201, 201, 0.979);
+}
+
+.no-results:before{
+    content: ". . .";
+    color:rgba(202, 202, 202, 0.979);
+    margin-bottom: 1em;
+    font-size: 2.5em;
+    margin-top: -3em;
+
+}
+
+.sad-face{
+    display:block;
+    margin-top: 1em;
+}
 
 /* Make footer sticky*/
 
