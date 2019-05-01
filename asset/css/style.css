@@ -321,7 +321,7 @@ a:link{
         background-image: url(../img/mobile-back.jpg);
     }
     #logo{
-        margin:0 auto;
+        margin:3em auto;
         width:40%;
     }
     .container{
