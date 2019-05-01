@@ -41,7 +41,7 @@ $(document).ready(function(){
             console.log("actualizar contador")
             console.log(snap.val().contador)
             contadorjs = snap.val().contador
-            $(".visitas").text(contadorjs + " visitors");    
+            $(".visitas").text("Visitor "+ contadorjs + " thanks for coming!");    
 
         });
 
@@ -67,30 +67,16 @@ $(document).ready(function(){
     var ingredientsString="";
 
 
-    // === Render buttons ===
-    function renderButtons(){
-    $(".chipsRow").empty();
-
-        for (var i = 0; i < ingredientsArray.length; i++) {
-            var chipX = $("<div>");
-            chipX.addClass("chip");
-            chipX.attr("data-name", ingredientsArray[i]);
-            chipX.text(ingredientsArray[i]);
-            $(".chipsRow").append(chipX);
-        };
-
-        var closeX = $("<i>");
-        closeX.text("close");
-        closeX.addClass("close material-icons");
-        closeX.attr("data-name", ingredientsArray[i]);
-        $(".chip").append(closeX);
-
-    };
 
     // ===== Add On click  ===== 
     $("#addIngredients").on("click", function(event) {
         event.preventDefault();
         addedIngredient = $("#ingredients").val().trim();
+
+        if (addedIngredient == ""){
+            $("#labelAdd").text("You're missing something, type me an ingredient!").addClass("invalid");
+        }else{
+            $("#labelAdd").text("Add another ingredient").addClass("valid");
         ingredientsArray.push(addedIngredient);
         $("#ingredients").val("");
         renderButtons();
@@ -101,8 +87,33 @@ $(document).ready(function(){
         $(".recipesContainer").empty();
             
         ajaxCall();
+        };
 
     }); 
+
+    // Function that calls the quote each time you load the page
+    ajaxAdvice();
+
+
+    // === Render buttons ===
+    function renderButtons(){
+        $(".chipsRow").empty();
+    
+            for (var i = 0; i < ingredientsArray.length; i++) {
+                var chipX = $("<div>");
+                chipX.addClass("chip");
+                chipX.attr("data-name", ingredientsArray[i]);
+                chipX.text(ingredientsArray[i]);
+                $(".chipsRow").append(chipX);
+            };
+    
+            var closeX = $("<i>");
+            closeX.text("close");
+            closeX.addClass("close material-icons");
+            closeX.attr("data-name", ingredientsArray[i]);
+            $(".chip").append(closeX);
+    
+        };
 
    
     // ===== CLOSE CHIPS ===== 
@@ -116,6 +127,8 @@ $(document).ready(function(){
         console.log("despues de borrar", ingredientsArray)
         console.log("ingredients strings", ingredientsString);
         $(".recipesContainer").empty();
+        $("#labelAdd").text("Add another ingredient").addClass("valid");
+
         ajaxCall();
     }); 
         
@@ -312,5 +325,34 @@ $(document).ready(function(){
         });  // cierra Response 
         
     }; // Cierra Ajax Call
+
+
+    // =============== AJAX CALL 2 FOR QUOTE
+
+    function ajaxAdvice(){
+
+        var queryURL = "https://api.adviceslip.com/advice";
+  
+          
+        $.ajax({
+            url:queryURL,
+            method: "GET",
+            jsonp: "callback",
+        })
+        .then(function(response){
+  
+          console.log("response", response);
+  
+          // NO entiendo que pasó aquí pero finalmente funciona. Necesario un JSON.parse ¿? dunno why!
+          var resultados = JSON.parse(response);
+          var advice = resultados.slip.advice;
+           $("#quote").text(advice);
+        });
+  
+      }
+
+
+
+
 }); // La segunda cierra on document ready
     

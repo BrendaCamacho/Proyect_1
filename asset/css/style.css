@@ -3,6 +3,8 @@
     --verde: #00897b;
     --amarillo: #ffcc24;
     --amarilloDarker:#ffab00;
+    --lighten:#ffe082;
+
 }
 
 body{
@@ -15,12 +17,23 @@ body{
     background-attachment: fixed;
     background-size: cover;
 }
+
+html, body {
+    height: 100%;
+    margin: 0;
+  }
+  .container {
+    min-height: 100%;
+    margin-bottom: -30px;
+  }
+
+
 .logo{
     text-align: center;
 }
 
 #logo{
-    margin:8em auto 2em auto;
+    margin:6em auto 2em auto;
     width:25%;
 }
 
@@ -35,7 +48,7 @@ input{
     display:flex;
     justify-content: center;
     flex-flow: row wrap;
-    margin-bottom: 2em;
+    margin-bottom: 1em;
 } 
 
 
@@ -93,7 +106,49 @@ text-transform: none;
     transition: ease-in-out 0.3s;
 }
 
+/*===== PHRASE ADVICE/RECIPE FOR LIFE ===== */
 
+.phrase{
+    width:100%;
+    justify-content: center;
+    margin-bottom:2em;
+}
+
+.textPhrase{
+    text-align: center;    
+    color:var(--lighten);
+    flex:0 1 auto;
+    font-style: italic;
+    opacity: 0.9;
+    letter-spacing: 1px;
+    font-size: .85em;
+
+}
+
+.textPhrase:before {
+    content: open-quote;
+    display: inline;
+    left: -5px;
+    position: relative;
+    top: 9px;
+    font-size: 2.5em;
+    line-height: .75;
+    height:0;
+    color: var(--claro);
+    opacity: 0.8;
+  }
+  .textPhrase::after {
+    line-height: .75;
+    height:0;
+    content: close-quote;
+    display: inline;
+    left: -5px;
+    position: relative;
+    top: 9px;
+    color: var(--claro);
+    opacity: 0.8;
+    font-size: 2.5em;
+  }
 
 
 /*===== ROW 3 CHIPS ===== */
@@ -102,7 +157,7 @@ text-transform: none;
     display:flex;
     justify-content: center;
     font-weight: 400;
-    margin-bottom: 4em;
+    margin-bottom: 3em;
 }
 
 .chip{
@@ -238,16 +293,25 @@ a:link{
 
 .visitas{
     text-align: center;
-    width:100%;
     color:var(--claro);
-    margin: 0 auto;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font: 300;
+    letter-spacing: 2px;
+    font-weight: 400;
     bottom: 0;
+    font-size: .6em;
+    border-top:1px solid var(--amarillo);
+    bottom:0;
+    opacity: 0.5;
+    padding:3px 0 0 0;
+    margin-bottom: 0;
+}
+
+.footer{
+    padding:0;
+    margin:4em 0 0 0;
 }
 
 
+/* Make footer sticky*/
 
 
 /* ===== MEDIA QUERIES ===== */
